@@ -62,7 +62,7 @@ public class UserController {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+
             return new ResponseEntity<>("Error while logging in!", HttpStatusCode.valueOf(500));
         }
     }
@@ -121,6 +121,7 @@ public class UserController {
             service.sendOtp(email.trim().toLowerCase());
             return new ResponseEntity<>(true, HttpStatusCode.valueOf(200));
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(500).body(false);
         }
     }
