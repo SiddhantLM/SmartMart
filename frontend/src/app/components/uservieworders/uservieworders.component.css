@@ -1,0 +1,175 @@
+
+.orders-container {
+    padding: 2rem;
+    background-color: #FAF3E0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .title {
+    color: #8B4513;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+  
+  .loading {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #8B4513;
+  }
+  
+  .empty {
+    text-align: center;
+    color: #8B4513;
+    font-size: 1.3rem;
+    margin-top: 3rem;
+  }
+  
+  .orders-grid {
+    display: grid;
+    gap: 1.8rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  }
+  
+  .order-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(139, 69, 19, 0.15);
+    border: 2px solid #8B4513;
+    transition: transform 0.3s ease;
+  }
+  
+  .order-card:hover {
+    transform: translateY(-8px);
+  }
+  
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: #8B4513;
+    color: #FAF3E0;
+  }
+  
+  .order-header .date {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-left: 0.5rem;
+  }
+  
+  .order-header .status {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  .order-items {
+    padding: 1rem;
+  }
+  
+  .order-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed #ddd;
+  }
+  
+  .order-item:last-child {
+    border-bottom: none;
+  }
+  
+  .product-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #eee;
+  }
+  
+  .item-details {
+    flex: 1;
+  }
+  
+  .item-details .product-name {
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 4px;
+  }
+  
+  .item-details .quantity {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 2px 0;
+  }
+  
+  .item-details .price {
+    color: #8B4513;
+    font-weight: bold;
+  }
+  
+  .order-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background-color: #fdf6e9;
+    border-top: 1px solid #eee;
+  }
+  
+  .order-footer .address {
+    font-size: 0.95rem;
+    color: #444;
+    max-width: 60%;
+  }
+  
+  .order-footer .total {
+    text-align: right;
+  }
+  
+  .order-footer .total .amount {
+    font-size: 1.4rem;
+    color: #8B4513;
+    font-weight: bold;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background-color: #8B4513;
+  }
+  
+  .actions button {
+    flex: 1;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .actions button.btn-view {
+    background-color: #FAF3E0;
+    color: #8B4513;
+  }
+  
+  .actions button.btn-track {
+    background-color: white;
+    color: #8B4513;
+  }
+  
+  .actions button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+  

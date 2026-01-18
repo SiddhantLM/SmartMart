@@ -1,0 +1,81 @@
+/* Container */
+.feedback-container {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #FAF3E0; /* Beige background */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #4E342E; /* Dark brown text */
+  }
+  
+  .feedback-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #8B4513; /* Accent brown */
+  }
+  
+  /* Form Fields */
+  .feedback-container form div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #6F4E37; /* Medium brown */
+  }
+  
+  textarea, input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #EED9C4; /* Light tan border */
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    color: #4E342E;
+  }
+  
+  textarea:focus, input[type="number"]:focus {
+    outline: none;
+    border-color: #8B4513; /* Accent brown */
+    box-shadow: 0 0 5px rgba(139, 69, 19, 0.3);
+  }
+  
+  /* Error Message */
+  .error {
+    color: #E53935; /* Red for error */
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  
+  /* Stars */
+  span {
+    font-size: 18px;
+    color: #8B4513;
+  }
+  
+  /* Submit Button */
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #8B4513; /* Accent brown */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #6F4E37; /* Darker brown */
+  }
+  
+  button[disabled] {
+    background-color: #D2B48C; /* Tan for disabled */
+    cursor: not-allowed;
+  }
+  

@@ -1,0 +1,14 @@
+
+<div *ngIf="user===null">
+    <app-navbar></app-navbar>
+</div>
+
+<div *ngIf="isAdmin">
+    <app-adminnavbar [user]="user"></app-adminnavbar>
+</div>
+
+<div *ngIf="isUser">
+    <app-usernavbar [user]="user"></app-usernavbar>
+</div>
+
+<router-outlet></router-outlet>

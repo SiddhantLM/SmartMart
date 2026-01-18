@@ -1,0 +1,70 @@
+
+<div class="add-product-container">
+  <h2>Add Product</h2>
+  <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+
+    <!-- Name -->
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" type="text" />
+      <div *ngIf="productForm.get('name')?.touched && productForm.get('name')?.invalid" class="error-message">
+        <small *ngIf="productForm.get('name')?.errors?.['required']">Name is required.</small>
+        <small *ngIf="productForm.get('name')?.errors?.['minlength']">Minimum 5 characters required.</small>
+        <small *ngIf="productForm.get('name')?.errors?.['maxlength']">Maximum 60 characters allowed.</small>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div>
+      <label for="description">Description:</label>
+      <textarea id="description" formControlName="description" rows="4"></textarea>
+      <div *ngIf="productForm.get('description')?.touched && productForm.get('description')?.invalid" class="error-message">
+        <small *ngIf="productForm.get('description')?.errors?.['required']">Description is required.</small>
+        <small *ngIf="productForm.get('description')?.errors?.['minlength']">Minimum 10 characters required.</small>
+        <small *ngIf="productForm.get('description')?.errors?.['maxlength']">Maximum 500 characters allowed.</small>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div>
+      <label for="price">Price:</label>
+      <input id="price" formControlName="price" type="number" />
+      <div *ngIf="productForm.get('price')?.touched && productForm.get('price')?.invalid" class="error-message">
+        <small *ngIf="productForm.get('price')?.errors?.['required']">Price is required.</small>
+        <small *ngIf="productForm.get('price')?.errors?.['min']">Price must be greater than 0.</small>
+      </div>
+    </div>
+
+    <!-- Stock -->
+    <div>
+      <label for="stock">Stock:</label>
+      <input id="stock" formControlName="stock" type="number" />
+      <div *ngIf="productForm.get('stock')?.touched && productForm.get('stock')?.invalid" class="error-message">
+        <small *ngIf="productForm.get('stock')?.errors?.['required']">Stock is required.</small>
+        <small *ngIf="productForm.get('stock')?.errors?.['min']">Stock must be at least 5.</small>
+      </div>
+    </div>
+
+    <!-- Category -->
+    <div>
+      <label for="category">Category:</label>
+      <input id="category" formControlName="category" type="text" />
+      <div *ngIf="productForm.get('category')?.touched && productForm.get('category')?.invalid" class="error-message">
+        <small>Category is required.</small>
+      </div>
+    </div>
+
+    <!-- Photo -->
+    <div>
+      <label for="photo">Photo:</label>
+      <input id="photo" type="file" (change)="onFileSelected($event)" />
+      <div *ngIf="productForm.get('photoImage')?.touched && productForm.get('photoImage')?.invalid" class="error-message">
+        <small>Photo is required.</small>
+      </div>
+      <img *ngIf="photoImageUrl" [src]="photoImageUrl" alt="Preview" width="100" />
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" [disabled]="!productForm.valid">Add Product</button>
+  </form>
+</div>

@@ -1,0 +1,122 @@
+<div class="product-list-container">
+  <h1 class="page-title">Our Products</h1>
+
+  <!-- Filter Toolbar -->
+  <div class="filter-toolbar">
+    <button class="filter-button" (click)="openFilter()">FILTER</button>
+    <div class="filter-summary" *ngIf="activeFilterCount > 0">
+      {{ activeFilterCount }} filter{{ activeFilterCount > 1 ? 's' : '' }} applied
+    </div>
+  </div>
+
+  <!-- Filter Modal (unchanged except small improvements) -->
+  <div class="modal-backdrop" *ngIf="showFilterModal" (click)="closeFilter()"></div>
+  <dialog class="modal" *ngIf="showFilterModal" aria-modal="true">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeFilter()" aria-label="Close">×</button>
+      <h2 class="modal-title">Filter Products</h2>
+
+      <!-- Price Sort -->
+      <div class="filter-group">
+        <h3>Sort By Price</h3>
+        <label><input type="radio" name="priceOrder" [(ngModel)]="sortOrderModel" value="lowToHigh"> Low to High</label>
+        <label><input type="radio" name="priceOrder" [(ngModel)]="sortOrderModel" value="highToLow"> High to Low</label>
+      </div>
+
+      <!-- Category -->
+      <div class="filter-group">
+        <h3>Category</h3>
+        <div class="category-list">
+          <label *ngFor="let cat of allCategories" class="category-item">
+            <input type="checkbox" [checked]="selectedCategoriesModel.includes(cat)"
+                   (change)="toggleCategory(cat)"> {{ cat }}
+          </label>
+        </div>
+      </div>
+
+      <!-- Rating -->
+      <div class="filter-group">
+        <h3>Minimum Rating</h3>
+        <label><input type="radio" name="minRating" [(ngModel)]="minRatingModel" [value]="5"> 5 stars</label>
+        <label><input type="radio" name="minRating" [(ngModel)]="minRatingModel" [value]="4"> 4+ stars</label>
+        <label><input type="radio" name="minRating" [(ngModel)]="minRatingModel" [value]="3"> 3+ stars</label>
+        <label><input type="radio" name="minRating" [(ngModel)]="minRatingModel" [value]="null"> Any Rating</label>
+      </div>
+
+      <div class="modal-actions">
+        <button class="cancel-btn" (click)="closeFilter()">Cancel</button>
+        <button class="apply-btn" (click)="applyFilterFromModal()">Apply Filters</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="loader"></div>
+    <p>Loading products...</p>
+  </div>
+
+  <!-- Products Grid with Pagination -->
+  <div *ngIf="!isLoading && paginatedProducts.length > 0" class="products-grid">
+    <app-product-card
+      *ngFor="let product of paginatedProducts"
+      [product]="product"
+      [isAddedToCart]="isProductInCart(product.productId!)"
+      (addToCartEvent)="onAddToCart($event)">
+    </app-product-card>
+  </div>
+
+  <!-- No matching products -->
+  <div *ngIf="!isLoading && filteredProducts.length === 0 && products.length > 0" class="no-products">
+    <p>No products match your filters</p>
+    <button class="apply-btn" (click)="clearFilters()">Clear Filters</button>
+  </div>
+
+  <!-- No products at all -->
+  <div *ngIf="!isLoading && products.length === 0" class="no-products">
+    <p>No products available at the moment</p>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-wrapper" *ngIf="filteredProducts.length > itemsPerPage">
+    <div class="pagination-info">
+      Showing {{ from }}–{{ to }} of {{ filteredProducts.length }} products
+    </div>
+
+    <div class="pagination-controls">
+      <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">
+        Previous
+      </button>
+
+      <button *ngFor="let page of pageNumbers"
+              (click)="setPage(page)"
+              [class.active]="page === currentPage">
+        {{ page }}
+      </button>
+
+      <button (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages">
+        Next
+      </button>
+    </div>
+
+    <div class="items-per-page">
+      <label>Show:
+        <select [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+          <option>12</option>
+          <option>24</option>
+          <option>36</option>
+          <option>48</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div *ngIf="showToast" class="toast" [ngClass]="toastType">
+    <div class="toast-content">
+      <span [class]="toastType === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'"></span>
+      <span>{{ toastMessage }}</span>
+    </div>
+    <button class="toast-close" (click)="closeToast()">×</button>
+  </div>
+</div>

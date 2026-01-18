@@ -1,0 +1,303 @@
+
+
+.all-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  min-height: 100vh;
+}
+.cont {
+  display: flex;
+  max-width: 900px;
+  /* margin: auto; */
+  /* max-height: 90vh; */
+  /* height: 85vh; */
+  background-color: #FAF3E0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #4E342E;
+  overflow: hidden;
+}
+
+.form {
+  flex: 1;
+  /* max-height: max-content; */
+  padding: 0 40px;
+  padding-bottom: 40px;
+  background-color: #FFFFFF;
+}
+
+.form h2 {
+  margin-bottom: 20px;
+  /* font-size: 13px; */
+  color: #8B4513;
+}
+
+label {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+label span {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #6F4E37;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #EED9C4;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #8B4513;
+  box-shadow: 0 0 5px rgba(139, 69, 19, 0.3);
+}
+
+button.submit {
+  width: 100%;
+  padding: 10px;
+  background-color: #8B4513;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button.submit:hover {
+  background-color: #6F4E37;
+}
+
+button.submit:disabled {
+  background-color: #D2B48C;
+  cursor: not-allowed;
+}
+
+button.google-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #FFFFFF;
+  color: #4E342E;
+  border: 1px solid #EED9C4;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.google-btn:hover {
+  background-color: #F5F5DC;
+}
+
+.sub-cont {
+  flex: 1;
+  background: url('/assets/SignupBg.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px;
+  color: #FFFFFF;
+}
+
+.sub-cont::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(78, 52, 46, 0.5);
+  z-index: 1;
+}
+
+.img__text,
+.img__btn {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.img__btn span {
+  padding: 10px 20px;
+  background-color: #8B4513;
+  color: #FFFFFF;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.error {
+  color: #E53935;
+  font-size: 11px;
+}
+
+.error-message {
+  color: #E53935;
+  margin-bottom: 10px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.material-icons {
+  font-size: 20px;
+  color: #DB4437;
+}
+
+
+
+
+
+
+
+/* .landing-page {
+    position: relative;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header-bar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(to right, #007b5e, #00a86b);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    font-size: 18px;
+  }
+  
+  .header-bar .nav-links a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+   */
+  /* .background-image {
+    background: url('assets/images/grocery.jpg') no-repeat center center/cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+  } */
+  
+  /* .registration-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+  }
+  
+  .registration-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
+  .register-btn {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .login-text {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .login-text a {
+    color: #007bff;
+    text-decoration: none;
+  }
+   */
+  /* Modal */
+  /* .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .modal-content button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  } */

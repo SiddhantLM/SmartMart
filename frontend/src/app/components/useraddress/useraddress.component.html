@@ -1,0 +1,60 @@
+<div class="addresses-container">
+
+    <!-- Address List -->
+    <div class="address-list">
+      <h3>Your Addresses</h3>
+      <button class="add-btn" (click)="addNewAddress()">+ Add New Address</button>
+  
+      <div class="address-items">
+        <div *ngFor="let addr of addresses"
+             class="address-card"
+             [class.selected]="selectedAddress?.addressId === addr.addressId"
+             (click)="selectAddress(addr)" onkeypress="">
+  
+          <div class="address-info">
+            <strong>{{ addr.category }}</strong>
+            <p>{{ addr.addressData }}</p>
+            <small>Pincode: {{ addr.pincode }}</small>
+          </div>
+  
+          <div class="actions">
+            <button class="edit-btn" (click)="editAddress(addr); $event.stopPropagation()">Edit</button>
+            <button class="delete-btn" (click)="deleteAddress(addr); $event.stopPropagation()">Delete</button>
+          </div>
+        </div>
+  
+        <div *ngIf="addresses.length === 0" class="no-addresses">
+          No addresses saved yet.
+        </div>
+      </div>
+    </div>
+  
+    <!-- Add/Edit Form -->
+    <div class="address-form" *ngIf="isAddingNew || editingAddress">
+      <h3>{{ isAddingNew ? 'Add New Address' : 'Edit Address' }}</h3>
+  
+      <form (ngSubmit)="saveAddress()">
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select id="category" [(ngModel)]="formAddress.category" name="category">
+            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="address">Full Address</label>
+          <textarea id="address" [(ngModel)]="formAddress.addressData" name="addressData" rows="3" required></textarea>
+        </div>
+  
+        <div class="form-group">
+          <label for="pincode">Pincode</label>
+          <input id="pincode" type="text" [(ngModel)]="formAddress.pincode" name="pincode" required />
+        </div>
+  
+        <div class="form-actions">
+          <button type="submit" class="save-btn">Save</button>
+          <button type="button" class="cancel-btn" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>

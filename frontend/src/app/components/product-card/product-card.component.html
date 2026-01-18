@@ -1,0 +1,47 @@
+<div class="product-card" (click)="onCardClick()" style="cursor: pointer;" onkeypress="" *ngIf="product!==null">
+  <div class="product-image">
+    <img [src]="product.photoImage" alt="product">
+    
+    <!-- Heart Icon Toggle -->
+    <button class="like-btn" (click)="toggleWishList($event)">
+      
+      <i
+      class="fa-heart"
+      [ngClass]="{
+        'fa-solid': isLiked,
+        'fa-regular': !isLiked,
+        'text-danger': isLiked
+      }"
+      ></i>
+
+    </button>
+  </div>
+  
+  <div class="product-details">
+    <h3 class="product-title">{{ product.name }}</h3>
+    <p class="product-description">{{ product.description }}</p>
+    
+    <!-- Dynamic Stars -->
+    <div class="rating">
+      <ng-container *ngFor="let star of stars; let i = index">
+        <i class="fa-star" [ngClass]="i < (product.rating || 0) ? 'fa-solid' : 'fa-regular'"></i>
+      </ng-container>
+      <span>({{ product.rating || 0 }})</span>
+    </div>
+    
+    <!-- Price -->
+    <div class="price">
+      <span class="current-price">₹{{ product.price }}</span>
+      <span class="old-price" *ngIf="product.price && product.price < 4000">₹{{ product.price + 1000 }}</span>
+    </div>
+    
+    <!-- Add to Cart -->
+    <button class="cart-btn"
+      (click)="onAddToCart($event)"
+      [disabled]="isAddedToCart || isStock()"
+      [class.added]="isAddedToCart">
+        <i class="fa-solid" [ngClass]="isAddedToCart ? 'fa-check' : 'fa-cart-shopping'"></i>
+        {{ isAddedToCart ? 'Added to Cart' : 'Add to Cart' }}
+    </button>
+  </div>
+</div>

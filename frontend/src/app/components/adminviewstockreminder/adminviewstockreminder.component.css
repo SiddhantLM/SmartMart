@@ -1,0 +1,128 @@
+.reminders-container {
+    padding: 3rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: #FFFDF7; /* warm off-white */
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .page-title {
+    font-size: 2.5rem;
+    color: #3C2F2F; /* deep brown */
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .subtitle {
+    text-align: center;
+    color: #6B5B4F;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+  
+  .reminders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.8rem;
+  }
+  
+  .reminder-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(139, 114, 94, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #F2E8D9; /* light beige */
+  }
+  
+  .reminder-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(139, 114, 94, 0.15);
+  }
+  
+  .reminder-card.sent {
+    opacity: 0.75;
+    background: #FDFCF9;
+  }
+  
+  .card-header {
+    background: #8B6F47; /* elegant brown */
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .product-name {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .reminder-id {
+    font-size: 0.85rem;
+    opacity: 0.9;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+    background: #FFFCF5; /* very light beige */
+  }
+  
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+  }
+  
+  .label {
+    color: #6B5B4F;
+    font-weight: 500;
+  }
+  
+  .value {
+    color: #2C1F1A;
+    font-weight: 600;
+  }
+  
+  .card-footer {
+    padding: 1.2rem 1.5rem;
+    background: white;
+    border-top: 1px solid #F2E8D9;
+    text-align: right;
+  }
+  
+  .send-btn {
+    background: #8B6F47;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .send-btn:hover:not(:disabled) {
+    background: #6B5B4F;
+    transform: translateY(-2px);
+  }
+  
+  .send-btn:disabled {
+    background: #B8A89A;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #8B7B6F;
+    font-size: 1.3rem;
+  }

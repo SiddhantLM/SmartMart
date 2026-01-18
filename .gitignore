@@ -1,0 +1,12 @@
+frontend/node_modules
+karma
+junit
+frontend/.env
+
+springapp/mvnw
+springapp/mvnw.cmd
+springapp/target
+springapp/.env
+!.github/ 
+!.github/workflows/
+!.github/workflows/build.yml

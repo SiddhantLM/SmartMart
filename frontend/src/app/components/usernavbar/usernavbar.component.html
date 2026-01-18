@@ -1,0 +1,20 @@
+<nav class="navbar">
+    <div class="navbar-brand">Smart Mart</div>
+    <ul class="navbar-links">
+      <li><span class="user-label">{{user.username}} / USER</span></li>
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/user/view-products">View Products</a></li>
+      <li>
+        <a routerLink="/user/cart">
+          <span class="cart-icon">
+            <img src="https://pngimg.com/d/shopping_cart_PNG70.png" class="cart-img" alt="cart-icon">
+            <span class="cart-count">{{ cartCount }}</span>
+          </span>
+        </a>
+      </li>
+      <li><a routerLink="/user/view-orders">My Orders</a></li>
+      <li><a routerLink="/user/feedback">Feedback</a></li>
+      <li><a routerLink="/user/view-wishlist" class="wishlist-link"><i class="fa-heart fa-regular" ></i></a></li>
+    </ul>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </nav>

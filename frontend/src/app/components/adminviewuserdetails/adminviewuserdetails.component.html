@@ -1,0 +1,76 @@
+<div class="container mt-4">
+  <h2>Users List</h2>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Mobile Number</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngIf="paginatedUsers.length === 0">
+        <td colspan="6" class="text-center">Oops! No Users found.</td>
+      </tr>
+
+      <tr *ngFor="let user of paginatedUsers; let i = index">
+        <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+        <td><strong>{{ user.username }}</strong></td>
+        <td>{{ user.email }}</td>
+        <td>
+          <span class="role-badge" [ngClass]="{
+            'role-admin': user.userRole === 'ADMIN',
+            'role-user': user.userRole === 'USER'
+          }">
+            {{ user.userRole }}
+          </span>
+        </td>
+        <td>{{ user.mobileNumber || '—' }}</td>
+        <td>
+          <button class="delete-btn" (click)="deleteUser(user.userId)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-container" *ngIf="users.length > 0">
+    <div class="pagination-info">
+      Showing {{ from }} to {{ to }} of {{ users.length }} users
+    </div>
+
+    <div class="pagination-controls">
+      <button (click)="setPage(1)" [disabled]="currentPage === 1">First</button>
+      <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+
+      <span class="page-numbers">
+        <button *ngFor="let page of pageNumbers"
+                (click)="setPage(page)"
+                [class.active]="page === currentPage">
+          {{ page }}
+        </button>
+      </span>
+
+      <button (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+      <button (click)="setPage(totalPages)" [disabled]="currentPage === totalPages">Last</button>
+    </div>
+
+    <div class="items-per-page">
+      <label>Show 
+        <select [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+          <option>5</option>
+          <option>10</option>
+          <option>25</option>
+          <option>50</option>
+        </select> entries
+      </label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,325 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1>Shop Smart, Live Better</h1>
+    <p>Discover amazing deals on your favorite products</p>
+    <button class="cta-btn" (click)="navigateToProductList()">Shop Now</button>
+  </div>
+</section>
+
+<section class="why-choose">
+  <h2>Why Choose Smart Mart</h2>
+  <div class="choose-grid">
+    <div class="choose-card">
+      <img
+        src="https://png.pngtree.com/png-clipart/20230509/original/pngtree-fast-delivery-label-design-png-image_9153915.png"
+        alt="fast Delivery"
+      />
+      <h3>Fast Delivery</h3>
+      <p>Get your orders delivered quickly and on time.</p>
+    </div>
+    <div class="choose-card">
+      <img
+        src="https://static.vecteezy.com/system/resources/thumbnails/029/899/733/small/secure-payment-credit-card-icon-with-shield-secure-transaction-stock-illustration-vector.jpg"
+        alt="secure payment"
+      />
+      <h3>Secure Payments</h3>
+      <p>Enjoy safe and secure payment options.</p>
+    </div>
+    <div class="choose-card">
+      <img
+        src="https://www.ashleyward.com/images/blog-post/quality-blog.jpg"
+        alt="quality"
+      />
+      <h3>Quality Products</h3>
+      <p>We offer only the best quality products for you.</p>
+    </div>
+    <div class="choose-card">
+      <img
+        src="https://img.freepik.com/premium-vector/vector-image-247-with-arrow-illustration_822642-176.jpg?semt=ais_hybrid&w=740&q=80"
+        alt="support"
+      />
+      <h3>24/7 Support</h3>
+      <p>Our team is here to help you anytime.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about-us" id="about">
+  <h2>Meet Our Team</h2>
+  <div class="team-grid">
+    <!-- Row 1 -->
+    <div class="team-row">
+      <div class="team-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/9815/9815472.png"
+          alt="profile1"
+        />
+        <h3>Siddhant</h3>
+        <p class="role">Founder</p>
+        <p>
+          Leading Smart Mart with a vision for innovation and customer
+          satisfaction.
+        </p>
+      </div>
+      <div class="team-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/9815/9815472.png"
+          alt="profile2"
+        />
+        <h3>Likhith</h3>
+        <p class="role">Marketing Head</p>
+        <p>Connecting Smart Mart with millions of happy customers worldwide.</p>
+      </div>
+      <div class="team-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/9815/9815472.png"
+          alt="profile3"
+        />
+        <h3>Sai</h3>
+        <p class="role">Lead Developer</p>
+        <p>
+          Building seamless shopping experiences with cutting-edge technology.
+        </p>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="team-row">
+      <div class="team-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/9815/9815472.png"
+          alt="profile4"
+        />
+        <h3>Shraddha</h3>
+        <p class="role">Customer Support</p>
+        <p>Ensuring every query is resolved with care and efficiency.</p>
+      </div>
+      <div class="team-card">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/9815/9815472.png"
+          alt="profile5"
+        />
+        <h3>Neha</h3>
+        <p class="role">Operations Head</p>
+        <p>Managing logistics to deliver products quickly and reliably.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products-section">
+  <h2>Products</h2>
+  <div class="product-grid" *ngIf="products.length > 0">
+    <div
+      class="product-card fade-in"
+      *ngFor="let product of products.slice(0, 6)"
+    >
+      <img [src]="product.photoImage" alt="{{ product.name }}" />
+      <h3>{{ product.name }}</h3>
+      <p>₹{{ product.price }}</p>
+      <button>Add to Cart</button>
+    </div>
+  </div>
+  <div
+    style="
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 0;
+    "
+    class="product-grid"
+    *ngIf="products.length === 0"
+  >
+    No Products Available
+  </div>
+  <!-- View More Button -->
+  <div class="view-more-container" *ngIf="products.length > 6">
+    <button class="view-more-btn bounce" (click)="goToproductList()">
+      VIEW MORE!
+    </button>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <h2>GET IN TOUCH</h2>
+  <p>
+    Write to us with your shopping-related questions and we will get back to you
+  </p>
+
+  <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="input-group">
+        <input
+          type="text"
+          placeholder="Name *"
+          formControlName="name"
+          [class.valid]="
+            contactForm.get('name')?.valid && contactForm.get('name')?.touched
+          "
+          [class.invalid]="
+            contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+          "
+        />
+        <span
+          *ngIf="
+            contactForm.get('name')?.valid && contactForm.get('name')?.touched
+          "
+          class="icon success"
+          >✔</span
+        >
+        <span
+          *ngIf="
+            contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+          "
+          class="icon error"
+          >✖</span
+        >
+      </div>
+
+      <div class="input-group">
+        <input
+          type="text"
+          placeholder="Mobile Number *"
+          formControlName="mobile"
+          [class.valid]="
+            contactForm.get('mobile')?.valid &&
+            contactForm.get('mobile')?.touched
+          "
+          [class.invalid]="
+            contactForm.get('mobile')?.invalid &&
+            contactForm.get('mobile')?.touched
+          "
+        />
+        <span
+          *ngIf="
+            contactForm.get('mobile')?.valid &&
+            contactForm.get('mobile')?.touched
+          "
+          class="icon success"
+          >✔</span
+        >
+        <span
+          *ngIf="
+            contactForm.get('mobile')?.invalid &&
+            contactForm.get('mobile')?.touched
+          "
+          class="icon error"
+          >✖</span
+        >
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="input-group">
+        <input
+          type="email"
+          placeholder="Email Id *"
+          formControlName="email"
+          [class.valid]="
+            contactForm.get('email')?.valid && contactForm.get('email')?.touched
+          "
+          [class.invalid]="
+            contactForm.get('email')?.invalid &&
+            contactForm.get('email')?.touched
+          "
+        />
+        <span
+          *ngIf="
+            contactForm.get('email')?.valid && contactForm.get('email')?.touched
+          "
+          class="icon success"
+          >✔</span
+        >
+        <span
+          *ngIf="
+            contactForm.get('email')?.invalid &&
+            contactForm.get('email')?.touched
+          "
+          class="icon error"
+          >✖</span
+        >
+      </div>
+
+      <div class="input-group">
+        <select
+          formControlName="support"
+          [class.valid]="
+            contactForm.get('support')?.valid &&
+            contactForm.get('support')?.touched
+          "
+          [class.invalid]="
+            contactForm.get('support')?.invalid &&
+            contactForm.get('support')?.touched
+          "
+        >
+          <option value="" disabled selected>
+            What support do you require?
+          </option>
+          <option value="Order Issue">Order Issue</option>
+          <option value="Payment Issue">Payment Issue</option>
+          <option value="Product Inquiry">Product Inquiry</option>
+        </select>
+        <span
+          *ngIf="
+            contactForm.get('support')?.valid &&
+            contactForm.get('support')?.touched
+          "
+          class="icon success"
+          >✔</span
+        >
+        <span
+          *ngIf="
+            contactForm.get('support')?.invalid &&
+            contactForm.get('support')?.touched
+          "
+          class="icon error"
+          >✖</span
+        >
+      </div>
+    </div>
+
+    <div class="form-row full-width">
+      <textarea placeholder="Message" formControlName="message"></textarea>
+    </div>
+
+    <div class="form-row submit-row">
+      <button type="submit" class="submit-btn" [disabled]="contactForm.invalid">
+        Submit
+      </button>
+    </div>
+  </form>
+</section>
+<br /><br />
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-links">
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <a href="/assets/Conditions.txt" download>Terms & Privacy</a>
+    </div>
+    <div class="footer-social">
+      <a
+        ><img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png"
+          alt="facebook"
+      /></a>
+      <a
+        ><img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI-h-e2hgz8mwGfCt4gvj4IgMG_wAUolVM6w&s"
+          alt="twitter"
+      /></a>
+      <a
+        ><img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
+          alt="instagram"
+      /></a>
+    </div>
+    <p class="footer-copy">© 2025 Smart Mart. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="toast" *ngIf="showToast">
+  Your message has been submitted successfully!
+</div>

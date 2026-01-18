@@ -1,0 +1,95 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #FAF3E0 0%, #EED9C4 100%); /* Beige gradient */
+  padding: 12px 30px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-bottom: 3px solid #D2B48C;
+}
+
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #8B4513; /* Dark brown */
+  letter-spacing: 1px;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links a {
+  color: #4E342E;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navbar-links a:hover {
+  background-color: #D2B48C;
+  color: #fff;
+}
+
+.user-label {
+  background-color: #fff;
+  color: #8B4513;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+  border: 2px solid #8B4513;
+}
+
+
+.cart-icon {
+  position: relative;
+  display: inline-block;
+}
+
+
+.cart-img {
+  height: 30px;
+  width: 30px;
+  border-radius: 10px;
+  object-fit: contain; /* Prevent distortion */
+  vertical-align: middle;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #dc3545;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+.logout-btn {
+  background: linear-gradient(90deg, #FF6F61, #D84315); /* Coral gradient */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logout-btn:hover {
+  background: linear-gradient(90deg, #E64A19, #BF360C);
+  transform: scale(1.05);
+}

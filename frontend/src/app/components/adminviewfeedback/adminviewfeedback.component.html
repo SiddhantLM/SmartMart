@@ -1,0 +1,81 @@
+<div class="container mt-4">
+  <h2>Feedback List</h2>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <!-- <th>User Name</th> -->
+        <th>Feedback</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngIf="paginatedFeedback.length === 0">
+        <td colspan="4" class="text-center">Oops! No Feedback found.</td>
+      </tr>
+
+      <tr *ngFor="let feedback of paginatedFeedback; let i = index">
+        <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+        <!-- <td>
+          <a href="javascript:void(0)" 
+             class="user-link" 
+             (click)="openUserDetails(feedback)">
+            {{ feedback.user.username }}
+          </a>
+        </td> -->
+        <td>{{ feedback.message }}</td>
+        <td>
+          <span class="rating-stars">★</span>{{ feedback.rating }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-wrapper" *ngIf="feedBackList.length > 0">
+    <div class="pagination-info">
+      Showing {{ from }} to {{ to }} of {{ feedBackList.length }} orders
+    </div>
+
+    <div class="pagination-controls">
+      <button (click)="setPage(1)" [disabled]="currentPage === 1">First</button>
+      <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+
+      <span class="page-numbers">
+        <button *ngFor="let page of pageNumbers"
+                (click)="setPage(page)"
+                [class.active]="page === currentPage">
+          {{ page }}
+        </button>
+      </span>
+
+      <button (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+      <button (click)="setPage(totalPages)" [disabled]="currentPage === totalPages">Last</button>
+    </div>
+
+    <div class="items-per-page">
+      <label>Show
+        <select [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+          <option>5</option>
+          <option>10</option>
+          <option>25</option>
+          <option>50</option>
+        </select>
+        entries
+      </label>
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div *ngIf="showPopup" class="popup" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <h3>User Details</h3>
+      <p><strong>Email:</strong> {{ selectedUser?.email }}</p>
+      <p><strong>Username:</strong> {{ selectedUser?.username }}</p>
+      <p><strong>Mobile:</strong> {{ selectedUser?.mobileNumber }}</p>
+      <button class="delete-btn" (click)="closePopup()">Close</button>
+    </div>
+  </div>
+</div>

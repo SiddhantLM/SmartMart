@@ -1,0 +1,40 @@
+<div class="reminders-container">
+  <h1 class="page-title">Stock Reminders</h1>
+  <p class="subtitle">Manage users waiting for out-of-stock products</p>
+
+  <div class="reminders-grid">
+    <div *ngFor="let reminder of stockReminder" class="reminder-card">
+      <div class="card-header">
+        <h3 class="product-name">
+          {{ reminder.product?.name || "Unknown Product" }}
+        </h3>
+        <span class="reminder-id">#{{ reminder.id }}</span>
+      </div>
+
+      <div class="card-body">
+        <div class="info-row">
+          <span class="label">Email:</span>
+          <span class="value">{{ reminder.email }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Product ID:</span>
+          <span class="value">{{ reminder.product.productId }}</span>
+        </div>
+        <div class="info-row" *ngIf="reminder.product?.price">
+          <span class="label">Price:</span>
+          <span class="value">₹{{ reminder.product.price }}</span>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <button class="send-btn" (click)="sendReminder(reminder.id!)">
+          <span>Send Reminder Email</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="stockReminder.length === 0">
+    <p>No pending stock reminders at the moment.</p>
+  </div>
+</div>

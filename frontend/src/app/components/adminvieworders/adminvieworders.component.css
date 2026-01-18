@@ -1,0 +1,289 @@
+/* Full page beige background */
+body {
+  background-color: #FAF3E0; /* Beige background for entire page */
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+
+/* Container for table */
+.feedback-container {
+  width: 95%;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #FAF3E0; /* Same beige for seamless look */
+  border-radius: 0; /* Full-width section */
+}
+
+
+/* Heading */
+.feedback-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #8B4513;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+
+/* Table */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF; /* White table for contrast */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.styled-table th, .styled-table td {
+  padding: 14px 18px;
+  text-align: center;
+  border-bottom: 1px solid #EED9C4;
+  font-size: 15px;
+}
+
+
+thead th {
+  background-color: #D2B48C; /* Tan header */
+  color: #4E342E;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+tbody tr:hover {
+  background-color: #F5F5DC;
+  transition: background-color 0.3s ease;
+}
+/* Neutral dropdown */
+select {
+  width: 150px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  border: 2px solid #ccc;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #fff; /* No color for dropdown */
+}
+
+/* Color for option text */
+option.option-pending {
+  border-color: #a68b00;
+  color: #a68b00;
+}
+
+option.option-delivered {
+  border-color: #388e3c;
+  color: #388e3c;
+}
+
+option.option-cancelled {
+  border-color: #c62828;
+  color: #c62828;
+}
+
+
+/* Status Dropdown Styling */
+.status-select {
+  width: 160px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.status-pending      { border: 2px solid #FFB300; color: #FF8F00; background: #FFF8E1; }
+.status-accepted     { border: 2px solid #7CB342; color: #558B2F; background: #F1F8E9; }
+.status-packed       { border: 2px solid #029BE5; color: #0277BD; background: #E3F2FD; }
+.status-shipped      { border: 2px solid #0288D1; color: #01579B; background: #E1F5FE; }
+.status-out          { border: 2px solid #8E24AA; color: #6A1B9A; background: #F3E5F5; }
+.status-delivered    { border: 2px solid #388E3C; color: #1B5E20; background: #E8F5E8; }
+.status-cancelled    { border: 2px solid #E53935; color: #B71C1C; background: #FFEBEE; }
+.status-outstock     { border: 2px solid #F57C00; color: #E65100; background: #FFF3E0; }
+.status-default      { border: 2px solid #999; color: #555; }
+
+/* Product & Price Lists */
+.product-list ul,
+.price-list ul {
+  margin: 0;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.product-list li small {
+  color: #8B4513;
+  font-weight: normal;
+}
+
+/* Amount Highlight */
+.amount {
+  font-weight: bold;
+  color: #8B4513;
+  font-size: 16px;
+}
+
+/* Address */
+.address {
+  max-width: 200px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Pagination */
+.pagination-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  padding: 15px 0;
+  gap: 15px;
+  font-size: 14px;
+  color: #4E342E;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination-controls button {
+  background: #D2B48C;
+  color: #4E342E;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  min-width: 40px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background: #C19A6B;
+}
+
+.pagination-controls button:disabled {
+  background: #E8D5C4;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.pagination-controls button.active {
+  background: #8B4513;
+  color: white;
+}
+
+.items-per-page select {
+  padding: 6px 10px;
+  border: 1px solid #D2B48C;
+  border-radius: 4px;
+  margin: 0 8px;
+}
+
+/* Product & Price Lists */
+.product-list, .price-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+  text-align: left;
+}
+
+.product-list li, .price-list li {
+  padding: 4px 0;
+  font-size: 14px;
+}
+
+.address {
+  max-width: 200px;
+  word-wrap: break-word;
+  font-size: 14px;
+}
+
+.amount {
+  font-weight: bold;
+  color: #8B4513;
+}
+
+/* Status Dropdown Styling */
+.status-select {
+  width: 160px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid;
+}
+
+.status-pending { border-color: #FF9800; color: #FF9800; background: #FFF3E0; }
+.status-accepted { border-color: #2196F3; color: #2196F3; background: #E3F2FD; }
+.status-packed { border-color: #9C27B0; color: #9C27B0; background: #F3E5F5; }
+.status-shipped { border-color: #3F51B5; color: #3F51B5; background: #E8EAF6; }
+.status-out-for-delivery { border-color: #FF5722; color: #FF5722; background: #FFF3E0; }
+.status-delivered { border-color: #4CAF50; color: #4CAF50; background: #E8F5E8; }
+.status-cancelled { border-color: #F44336; color: #F44336; background: #FFEBEE; }
+.status-out-of-stock { border-color: #795548; color: #795548; background: #EFEBE9; }
+
+/* Pagination */
+.pagination-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  padding: 15px 0;
+  gap: 15px;
+  font-size: 14px;
+  color: #4E342E;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination-controls button {
+  background: #D2B48C;
+  color: #4E342E;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  min-width: 40px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background: #C19A6B;
+}
+
+.pagination-controls button:disabled {
+  background: #E8D5C4;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.pagination-controls button.active {
+  background: #8B4513;
+  color: white;
+}
+
+.items-per-page select {
+  padding: 6px 10px;
+  border: 1px solid #D2B48C;
+  border-radius: 4px;
+  margin: 0 8px;
+  background: white;
+}

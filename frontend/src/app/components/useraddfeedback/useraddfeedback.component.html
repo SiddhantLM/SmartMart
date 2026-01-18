@@ -1,0 +1,33 @@
+<div class="feedback-container">
+    <h2>Add Feedback</h2>
+  
+    <form [formGroup]="feedbackForm" (ngSubmit)="submit()">
+      <!-- Message Field -->
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" formControlName="message" rows="4" placeholder="Enter your feedback"></textarea>
+        <div *ngIf="feedbackForm.get('message')?.invalid && feedbackForm.get('message')?.touched" class="error">
+          Message is required.
+        </div>
+      </div>
+  
+      <!-- Rating Field -->
+      <div>
+        <label for="rating">Rating:</label>
+        <input id="rating" type="number" formControlName="rating" min="1" max="5" placeholder="Enter rating (1-5)" />
+        <div *ngIf="feedbackForm.get('rating')?.invalid && feedbackForm.get('rating')?.touched" class="error">
+          Rating must be between 1 and 5.
+        </div>
+      </div>
+  
+      <!-- Optional: Display stars -->
+      <div *ngIf="feedbackForm.get('rating')?.value">
+        <span *ngFor="let star of [].constructor(feedbackForm.get('rating')?.value)">⭐</span>
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="feedbackForm.invalid">Submit Feedback</button>
+    </form>
+  </div>
+
+  <app-userviewfeedback></app-userviewfeedback>

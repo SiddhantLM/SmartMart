@@ -1,0 +1,22 @@
+
+<nav class="navbar">
+  <div class="navbar-brand">SmartMart</div>
+  <div class="navbar-links">
+    <span class="role-badge">{{ user.username }} / ADMIN</span>
+
+    <!-- Dropdown -->
+    <div class="dropdown" [class.open]="isDropdownOpen">
+      <button class="dropdown-btn" (click)="toggleDropdown()">Products ▾</button>
+      <div class="dropdown-content" *ngIf="isDropdownOpen">
+        <a routerLink="/admin/add-product" class="dropdown-link" (click)="closeDropdown()">Add Product</a>
+        <a routerLink="/admin/view-products" class="dropdown-link" (click)="closeDropdown()">View Products</a>
+      </div>
+    </div>
+
+    <a routerLink="/admin/view-orders">Requested Orders</a>
+    <a routerLink="/admin/view-feedbacks">Feedback</a>
+    <a routerLink="/admin/view-users">Users</a>
+    <a routerLink="/admin/view-stockreminder">View Reminders</a>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+</nav>

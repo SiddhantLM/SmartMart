@@ -1,0 +1,133 @@
+<div class="all-cont">
+ 
+      <div class="cont">
+        <div class="sub-cont">
+          <div class="img">
+            <div class="img__text">
+              <h2>Already have an account?</h2>
+              <p>Login and continue exploring amazing features!</p>
+            </div>
+            <div class="img__btn">
+              <span>Login</span>
+            </div>
+          </div>
+        </div>
+     
+        <div class="form sign-up">
+          <h2>Create your account</h2>
+          <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+            <label>
+              <span>Username</span>
+              <input
+                type="text"
+                name="username"
+                [(ngModel)]="user.username"
+                required
+                minlength="3"
+                pattern="^[a-zA-Z0-9_]{3,}$"
+                #usernameCtrl="ngModel"
+                placeholder="Enter username"
+              />
+              <div *ngIf="usernameCtrl.invalid && usernameCtrl.touched" class="error">
+                <span *ngIf="usernameCtrl.errors?.['required']">Username is required.</span>
+                <span *ngIf="usernameCtrl.errors?.['minlength']">Username must be at least 3 characters.</span>
+                <span *ngIf="usernameCtrl.errors?.['pattern']">Username can only contain letters, numbers, and underscores.</span>
+              </div>
+            </label>
+     
+            <div class="row">
+              <label>
+                <span>Email</span>
+                <input
+                  type="email"
+                  name="email"
+                  [(ngModel)]="user.email"
+                  required
+                  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                  #emailCtrl="ngModel"
+                  placeholder="Enter email"
+                />
+                <div *ngIf="emailCtrl.invalid && emailCtrl.touched" class="error">
+                  <span *ngIf="emailCtrl.errors?.['required']">Email is required.</span>
+                  <span *ngIf="emailCtrl.errors?.['pattern']">Please enter a valid email address.</span>
+                </div>
+              </label>
+     
+              <label>
+                <span>Mobile Number</span>
+                <input
+                  type="tel"
+                  name="mobileNumber"
+                  [(ngModel)]="user.mobileNumber"
+                  required
+                  pattern="^[0-9]{10}$"
+                  maxlength="10"
+                  (keypress)="onlyNumbers($event)"
+                  #mobileCtrl="ngModel"
+                  placeholder="Enter mobile number"
+                />
+                <div *ngIf="mobileCtrl.invalid && mobileCtrl.touched" class="error">
+                  <span *ngIf="mobileCtrl.errors?.['required']">Mobile number is required.</span>
+                  <span *ngIf="mobileCtrl.errors?.['pattern']">Mobile number must be exactly 10 digits.</span>
+                </div>
+              </label>
+            </div>
+     
+            <div class="row">
+              <label>
+                <span>Password</span>
+                <input
+                  type="password"
+                  name="password"
+                  [(ngModel)]="user.password"
+                  required
+                  minlength="8"
+                  pattern="^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':&quot;\\|,.<>\/?])(?=.*[0-9])(?=.*[a-z]).{8,}$"
+                  #passwordCtrl="ngModel"
+                  placeholder="••••••"
+                />
+                <div *ngIf="passwordCtrl.invalid && passwordCtrl.touched" class="error">
+                  <span *ngIf="passwordCtrl.errors?.['required']">Password is required.</span>
+                  <span *ngIf="passwordCtrl.errors?.['minlength']">Password must be at least 8 characters.</span>
+                  <span *ngIf="passwordCtrl.errors?.['pattern']">Password must contain at least 1 uppercase, 1 lowercase, 1 number, and 1 special character.</span>
+                </div>
+              </label>
+     
+              <label>
+                <span>Confirm Password</span>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  ngModel
+                  required
+                  minlength="8"
+                  #confirmCtrl="ngModel"
+                  placeholder="••••••"
+                />
+                <div *ngIf="confirmCtrl.invalid && confirmCtrl.touched" class="error">
+                  <span *ngIf="confirmCtrl.errors?.['required']">Confirm password is required.</span>
+                  <span *ngIf="confirmCtrl.errors?.['minlength']">Password must be at least 8 characters.</span>
+                </div>
+              </label>
+            </div>
+     
+            <label>
+              <span>Role</span>
+              <select name="role" [(ngModel)]="user.userRole" required #roleCtrl="ngModel">
+                <option value="" disabled selected>Select Role</option>
+                <option value="ADMIN">Admin</option>
+                <option value="USER">User</option>
+              </select>
+              <div *ngIf="roleCtrl.invalid && roleCtrl.touched" class="error">Role is required.</div>
+            </label>
+     
+            <div *ngIf="registrationFailed" class="error-message">Registration failed. Try again.</div>
+     
+            <button type="submit" class="submit" [disabled]="form.invalid">Sign Up</button>
+           
+           
+        </form>
+        </div>
+      </div>
+      </div>
+     

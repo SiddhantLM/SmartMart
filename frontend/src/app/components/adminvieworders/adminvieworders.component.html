@@ -1,0 +1,115 @@
+<div class="feedback-container">
+  <h2>Requested Orders</h2>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Order ID</th>
+        <!-- <th>Username</th> -->
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Shipping Address</th>
+        <th>Total Amount</th>
+        <th>Quantity</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngIf="paginatedOrders.length === 0">
+        <td colspan="8" class="text-center">Oops! No Orders found.</td>
+      </tr>
+
+      <tr *ngFor="let order of paginatedOrders; let i = index">
+        <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+        <td>{{ order.orderId }}</td>
+        <!-- <td>{{order.user.username}}</td> -->
+        <td>
+          <ul class="product-list">
+            <li *ngFor="let item of order.items">{{ item.product.name }}</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="price-list">
+            <li *ngFor="let item of order.items">₹{{ item.product.price }}</li>
+          </ul>
+        </td>
+        <td class="address">{{ order.address.addressData }}</td>
+        <td class="amount">₹{{ order.totalAmount }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>
+          <select
+            [(ngModel)]="order.status"
+            (change)="updateStatus(order.orderId, order.status)"
+            class="status-select"
+            [ngClass]="{
+              'status-pending': order.status === 'PENDING',
+              'status-delivered': order.status === 'DELIVERED',
+              'status-cancelled': order.status === 'CANCELLED',
+              'status-shipped': order.status === 'SHIPPED',
+              'status-packed': order.status === 'PACKED',
+              'status-accepted': order.status === 'ACCEPTED',
+              'status-out-for-delivery': order.status === 'OUT FOR DELIVERY',
+              'status-out-of-stock': order.status === 'OUT OF STOCK'
+            }"
+          >
+            <option *ngFor="let status of statusOptions" [value]="status">
+              {{ status | titlecase }}
+            </option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination -->
+  <div class="pagination-wrapper" *ngIf="orders.length > 0">
+    <div class="pagination-info">
+      Showing {{ from }} to {{ to }} of {{ orders.length }} orders
+    </div>
+
+    <div class="pagination-controls">
+      <button (click)="setPage(1)" [disabled]="currentPage === 1">First</button>
+      <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">
+        Previous
+      </button>
+
+      <span class="page-numbers">
+        <button
+          *ngFor="let page of pageNumbers"
+          (click)="setPage(page)"
+          [class.active]="page === currentPage"
+        >
+          {{ page }}
+        </button>
+      </span>
+
+      <button
+        (click)="setPage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+      >
+        Next
+      </button>
+      <button
+        (click)="setPage(totalPages)"
+        [disabled]="currentPage === totalPages"
+      >
+        Last
+      </button>
+    </div>
+
+    <div class="items-per-page">
+      <label
+        >Show
+        <select [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+          <option>5</option>
+          <option>10</option>
+          <option>25</option>
+          <option>50</option>
+        </select>
+        entries
+      </label>
+    </div>
+  </div>
+</div>

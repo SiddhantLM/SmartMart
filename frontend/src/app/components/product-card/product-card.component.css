@@ -1,0 +1,139 @@
+.product-card {
+  width: 260px;
+  background-color: #fff8dc; /* Beige */
+  border: 1px solid #d2b48c; /* Tan */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  font-family: Arial, sans-serif;
+}
+.product-details {
+  padding: 15px; /* ✅ Adds space inside the details section */
+}
+
+
+.product-card:hover {
+  box-shadow: 0 8px 16px rgba(139, 69, 19, 0.5); /* Brown shadow */
+}
+
+.product-image {
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #8B4513;
+  color: #fff;
+  font-size: 14px;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+
+.like-btn {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #8B4513;
+  cursor: pointer;
+  padding: 5px;
+  background-color: white;
+  border-radius: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.like-btn:hover {
+  color: #A0522D;
+}
+
+.rating {
+  color: #8B4513;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.rating i {
+  margin-right: 4px;
+}
+
+.price {
+  margin-bottom: 12px;
+}
+
+.current-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #8B4513;
+}
+
+.old-price {
+  font-size: 14px;
+  color: #a9a9a9;
+  text-decoration: line-through;
+  margin-left: 8px;
+}
+
+.cart-btn {
+  background-color: #8B4513;     /* SaddleBrown - your main color */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.cart-btn:hover:not(:disabled) {
+  background-color: #A0522D;     /* Lighter brown on hover */
+}
+
+/* This class will be added when item is in cart */
+.cart-btn.added {
+  background-color: #5a8c3a !important;   /* Success green */
+  cursor: not-allowed;
+}
+
+/* Disabled state - fallback safety */
+.cart-btn:disabled {
+  background-color: #5a8c3a !important;
+  opacity: 0.9;
+  cursor: not-allowed;
+}
+
+/* Optional: subtle pulse animation when just added */
+.cart-btn.added i {
+  animation: tickPulse 0.6s ease;
+}
+
+@keyframes tickPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.cart-btn:hover {
+  background-color: #A0522D;
+}

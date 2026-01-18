@@ -1,0 +1,35 @@
+<div class="feedback-container">
+    <h2>My Feedbacks</h2>
+  
+    <!-- Feedback List -->
+    <table>
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Message</th>
+          <th>Rating</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feedback of myFeedbacks; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ feedback.message }}</td>
+          <td>{{ feedback.rating }}</td>
+          <td>
+            <button (click)="openPopup(feedback.feedbackId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Delete Confirmation Popup -->
+    <div *ngIf="showDeletedPopup" class="popup">
+      <div class="popup-content">
+        <h3>Confirm Delete</h3>
+        <p>Are you sure you want to delete this feedback?</p>
+        <button (click)="confirmDelete()">Yes</button>
+        <button (click)="cancelDelete()">No</button>
+      </div>
+    </div>
+  </div>

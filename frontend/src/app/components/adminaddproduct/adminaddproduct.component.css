@@ -1,0 +1,157 @@
+
+/* Page Title for Add Product */
+.add-product-container h2 {
+  color: #8B4513; /* Brown tone */
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #8B4513;
+  padding-bottom: 8px;
+  text-align: left; /* Align to left */
+}
+
+.add-product-container {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 700px;
+  margin: 20px auto; /* Same gap as Manage Products */
+}
+
+
+/* Form Container */
+form {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff8f0; /* Soft beige */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(59, 47, 47, 0.15);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Form Groups */
+form div {
+  margin-bottom: 18px;
+}
+
+label {
+  font-weight: 600;
+  color: #4a2e14;
+  margin-bottom: 6px;
+  display: block;
+}
+
+
+.error-message small {
+  color: #B22222;
+  font-size: 13px;
+  display: block;
+  margin-top: 4px;
+}
+
+/* Dynamic colors for inputs */
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid {
+  border: 2px solid #B22222; /* Red for invalid */
+
+}
+
+input.ng-touched.ng-valid,
+textarea.ng-touched.ng-valid {
+  border: 2px solid #228B22; /* Green for valid */
+  
+}
+
+input, textarea {
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+
+/* Inputs & Textarea */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #CBB89E;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #FAF3E0;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #8B4513;
+  box-shadow: 0 0 8px rgba(139, 69, 19, 0.3);
+  outline: none;
+}
+
+/* File Input */
+input[type="file"] {
+  margin-top: 8px;
+}
+
+/* Image Preview */
+img {
+  margin-top: 12px;
+  border-radius: 8px;
+  border: 2px solid #CBB89E;
+  width: 120px;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+/* Error Messages */
+small {
+  color: #B22222;
+  font-size: 13px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  background: #8B4513;
+  color: #FAF3E0;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background: #6F4E37;
+  transform: translateY(-2px);
+}
+
+button[disabled] {
+  background: #CBB89E;
+  cursor: not-allowed;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

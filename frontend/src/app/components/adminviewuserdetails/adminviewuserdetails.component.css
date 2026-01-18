@@ -1,0 +1,168 @@
+/* Full page beige background */
+body {
+  background-color: #FAF3E0;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+
+/* Container */
+.container {
+  width: 95%;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #FAF3E0;
+}
+
+
+/* Heading */
+.container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #8B4513;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+
+/* Table */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.styled-table th, .styled-table td {
+  padding: 14px 18px;
+  text-align: center;
+  border-bottom: 1px solid #EED9C4;
+  font-size: 15px;
+}
+
+
+thead th {
+  background-color: #D2B48C;
+  color: #4E342E;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+tbody tr:hover {
+  background-color: #f0e6d2;
+  transition: background-color 0.3s ease;
+}
+
+
+
+/* Delete Button */
+.delete-btn {
+  background-color: #8B4513;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+
+.delete-btn:hover {
+  background-color: #6F4E37;
+}
+
+/* Role Badge */
+.role-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.role-admin {
+  background-color: #8B4513;
+  color: white;
+}
+
+.role-user {
+  background-color: #D2B48C;
+  color: #4E342E;
+}
+
+/* Pagination Container */
+.pagination-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  padding: 15px 0;
+  gap: 15px;
+  font-size: 14.5px;
+  color: #4E342E;
+}
+
+.pagination-info {
+  font-weight: 500;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination-controls button {
+  background: #D2B48C;
+  color: #4E342E;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  min-width: 40px;
+  transition: all 0.2s;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background: #C19A6B;
+}
+
+.pagination-controls button:disabled {
+  background: #E8D5C4;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.pagination-controls button.active {
+  background: #8B4513;
+  color: white;
+}
+
+.items-per-page select {
+  padding: 6px 10px;
+  border: 1px solid #D2B48C;
+  border-radius: 6px;
+  background: white;
+  margin: 0 8px;
+  font-weight: 500;
+}
+
+/* Delete Button (consistent with other pages) */
+.delete-btn {
+  background-color: #B22222;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #8B0000;
+  transform: translateY(-1px);
+}

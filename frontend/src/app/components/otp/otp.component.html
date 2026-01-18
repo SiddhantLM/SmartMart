@@ -1,0 +1,28 @@
+<div class="otp-wrapper">
+    <div class="otp-wrapper">
+        <div class="otp-container">
+          <h3>Enter OTP</h3>
+          <p class="otp-info">We have sent a 6-digit OTP to your registered mobile/email.</p>
+      
+          <form (ngSubmit)="verifyOtp()">
+            <div class="otp-inputs">
+              <input type="text" maxlength="1" [(ngModel)]="otpArray[0]" name="otp0"  (input)="moveNext($event, 0)" (keydown)="movePrev($event, 0)" />
+              <input type="text" maxlength="1" [(ngModel)]="otpArray[1]" name="otp1" (input)="moveNext($event, 1)" (keydown)="movePrev($event, 1)"/>
+              <input type="text" maxlength="1" [(ngModel)]="otpArray[2]" name="otp2" (input)="moveNext($event, 2)" (keydown)="movePrev($event, 2)"/>
+              <input type="text" maxlength="1" [(ngModel)]="otpArray[3]" name="otp3" (input)="moveNext($event, 3)" (keydown)="movePrev($event, 3)"/>
+              <input type="text" maxlength="1" [(ngModel)]="otpArray[4]" name="otp4" (input)="moveNext($event, 4)" (keydown)="movePrev($event, 4)"/>
+              <input type="text" maxlength="1" [(ngModel)]="otpArray[5]" name="otp5" (input)="moveNext($event, 5)" (keydown)="movePrev($event, 5)"/>
+            </div>
+      
+            <button type="submit" class="submit-btn">Verify OTP</button>
+      
+            <div class="timer-section">
+              <span *ngIf="timer > 0">Resend OTP in <strong>{{ timer }}s</strong></span> -->
+              <button *ngIf="timer === 0" type="button" class="resend-btn" (click)="resendOtp()">Resend OTP</button>
+              <button type="button" class="resend-btn" (click)="resendOtp()">Resend OTP</button>
+              
+            </div>
+          </form>
+        </div> 
+    </div>
+</div>

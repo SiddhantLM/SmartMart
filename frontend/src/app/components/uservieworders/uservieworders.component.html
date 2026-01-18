@@ -1,0 +1,54 @@
+<div class="orders-container">
+    <h1 class="title">My Orders</h1>
+  
+    <div *ngIf="loading" class="loading">Loading orders...</div>
+  
+    <div *ngIf="!loading && orders.length === 0" class="empty">
+      <p>No orders found.</p>
+    </div>
+  
+    <div class="orders-grid">
+      <div *ngFor="let order of orders" class="order-card">
+        <div class="order-header">
+          <div>
+            <strong>Order #{{ order.orderId }}</strong>
+            <span class="date">{{ order.createdAt | date:'mediumDate' }}</span>
+          </div>
+          <span class="status" [style.background-color]="getStatusColor(order.status)">
+            {{ order.status || 'Pending' }}
+          </span>
+        </div>
+  
+        <div class="order-items">
+          <div *ngFor="let item of order.items; let last = last" class="order-item">
+            <img [src]="item.product.photoImage || 'assets/placeholder.jpg'"
+                 alt="{{ item.product.name }}"
+                 class="product-img">
+            <div class="item-details">
+              <p class="product-name">{{ item.product.name }}</p>
+              <p class="quantity">Qty: {{ item.quantity }}</p>
+              <p class="price">₹{{ (item.product.price || 0) * item.quantity | number:'1.2-2' }}</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="order-footer">
+          <div class="address">
+            <strong>Deliver to:</strong><br>
+            {{order.address.addressData}}<br>
+            {{ order.address.pincode }}
+          </div>
+  
+          <div class="total">
+            <strong>Total Amount</strong><br>
+            <span class="amount">₹{{ order.totalAmount | number:'1.2-2' }}</span>
+          </div>
+        </div>
+  
+        <!-- <div class="actions">
+          <button class="btn-view">View Details</button>
+          <button class="btn-track">Track Order</button>
+        </div> -->
+      </div>
+    </div>
+  </div>

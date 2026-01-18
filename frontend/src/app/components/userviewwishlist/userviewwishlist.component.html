@@ -1,0 +1,24 @@
+<div class="wishlist-container">
+    <h1 class="wishlist-title">My Wishlist</h1>
+   
+    <!-- Empty State -->
+    <div *ngIf="!wishlist || wishlist.length === 0" class="empty-wishlist">
+      <p>Your wishlist is empty</p>
+      <button class="btn-browse" routerLink="/products">Browse Products</button>
+    </div>
+   
+    <!-- Wishlist Grid with Reusable Product Card -->
+    <div class="wishlist-grid" *ngIf="wishlist && wishlist.length > 0">
+      <div class="product-card-wrapper" *ngFor="let product of wishlist">
+       
+        <!-- Reusable Product Card -->
+        <app-product-card
+          [product]="product"
+          [isAddedToCart]="isProductInCart(product.productId!)"
+          (addToCartEvent)="onAddToCart($event)">
+        </app-product-card>
+   
+      </div>
+    </div>
+  </div>
+   

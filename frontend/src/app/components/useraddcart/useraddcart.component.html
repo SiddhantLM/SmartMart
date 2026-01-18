@@ -1,0 +1,26 @@
+<div class="cart-container">
+  <div class="cart-card" *ngFor="let item of cart.items">
+    <!-- Product Image -->
+    <div class="product-image">
+      <img [src]="item.product.photoImage" alt="item" />
+    </div>
+
+    <!-- Product Details -->
+    <div class="product-details">
+      <h3>{{ item.product.name }}</h3>
+      <p>{{ item.product.description }}</p>
+      <p class="price">₹{{ item.product.price }}</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="product-actions">
+      <div class="quantity-control">
+        <button (click)="decreaseQty(item)">-</button>
+        <span>{{ item.quantity }}</span>
+        <button (click)="increaseQty(item)">+</button>
+      </div>
+      <button class="place-order" (click)="placeOrder(item)">Place Order</button>
+      <button class="delete-btn" (click)="removeItem(item)">🗑</button>
+    </div>
+  </div>
+</div>

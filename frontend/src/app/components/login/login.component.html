@@ -1,0 +1,74 @@
+<div class="cont">
+  <div class="form sign-in">
+    <h2>Welcome back,</h2>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <label>
+        <span>Username</span>
+        <input
+          type="text"
+          name="username"
+          [(ngModel)]="loginData.username"
+          required
+          #usernameCtrl="ngModel"
+          placeholder="Enter your username"
+        />
+        <div *ngIf="usernameCtrl.invalid && usernameCtrl.touched" class="error">
+          Username is required.
+        </div>
+      </label>
+ 
+      <label>
+        <span>Password</span>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="loginData.password"
+          required
+          #passwordCtrl="ngModel"
+          placeholder="••••••"
+        />
+        <div *ngIf="passwordCtrl.invalid && passwordCtrl.touched" class="error">
+          Password is required.
+        </div>
+      </label>
+ 
+      <!-- <label>
+        <span>Role</span>
+        <select
+          name="role"
+          [(ngModel)]="selectedRole"
+          required
+          #roleCtrl="ngModel"
+        >
+          <option value="" disabled selected>Select Role</option>
+          <option value="ADMIN">Admin</option>
+          <option value="USER">User</option>
+        </select>
+        <div *ngIf="roleCtrl.invalid && roleCtrl.touched" class="error">
+          Role is required.
+        </div>
+      </label> -->
+ 
+      <div *ngIf="loginFailed" class="error-message">
+        Login failed. Try again.
+      </div>
+ 
+      <button type="submit" class="submit" [disabled]="form.invalid">
+        Sign In
+      </button>
+    </form>
+  </div>
+ 
+  <div class="sub-cont">
+    <div class="img">
+      <div class="img__text">
+        <h2>New here?</h2>
+        <p>Sign up and discover great opportunities!</p>
+      </div>
+      <div class="img__btn">
+        <span routerLink="/register">Sign Up</span>
+      </div>
+    </div>
+  </div>
+</div>
+ 
