@@ -1,5 +1,5 @@
 package com.examly.springapp.model;
- 
+
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,23 +24,23 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
- 
- 
+
 @Entity
-@Table (name = "`Order`")
-// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "orderId")
+@Table(name = "`Order`")
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+// property = "orderId")
 public class Order {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
     private double totalAmount;
     private int quantity;
     private LocalDate createdAt;
     private LocalDate updatedAt;
-   
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-   
+
     public enum OrderStatus {
         PENDING,
         ACCEPTED,
@@ -51,27 +51,25 @@ public class Order {
         OUTFORDELIVERY,
         CANCELLED
     }
- 
- 
+
     @OneToOne
     @JoinColumn(name = "addressId")
     private Address address;
-   
+
     @ManyToOne
-    @JoinColumn(name="userId")
+    @JoinColumn(name = "userId")
     private User user;
-   
-   
-    @OneToMany(cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<OrderItem> items = new ArrayList<>();
- 
- 
+
+    @ManyToMany(mappedBy = "orders")
+    private List<Product> products = new ArrayList<>();
+
     public Order() {
     }
- 
-    
- 
+
     public Order(Long orderId, double totalAmount, int quantity, LocalDate createdAt, LocalDate updatedAt,
             OrderStatus status, Address address, User user, List<OrderItem> items) {
         this.orderId = orderId;
@@ -85,68 +83,66 @@ public class Order {
         this.items = items;
     }
 
-
-
     public Long getOrderId() {
         return orderId;
     }
- 
+
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
- 
+
     public Address getAddress() {
         return address;
     }
- 
+
     public void setAddress(Address address) {
         this.address = address;
     }
- 
+
     public double getTotalAmount() {
         return totalAmount;
     }
- 
+
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
     }
- 
+
     public int getQuantity() {
         return quantity;
     }
- 
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
- 
+
     public LocalDate getCreatedAt() {
         return createdAt;
     }
- 
+
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
- 
+
     public LocalDate getUpdatedAt() {
         return updatedAt;
     }
- 
+
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
     }
- 
+
     public OrderStatus getStatus() {
         return status;
     }
- 
+
     public void setStatus(OrderStatus status) {
         this.status = status;
     }
- 
+
     public User getUser() {
         return user;
     }
- 
+
     public void setUser(User user) {
         this.user = user;
     }
