@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://smartmart-1.onrender.com/api',
+  apiUrl: 'http://localhost:8080/api',
   RAZORPAY_KEY: 'rzp_test_RjgGCJrYNpeTCZ',
 };

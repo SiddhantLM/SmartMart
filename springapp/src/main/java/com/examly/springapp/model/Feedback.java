@@ -14,13 +14,14 @@ import jakarta.persistence.ManyToOne;
 public class Feedback {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long feedbackId;
     private String message;
     private int rating;
-    
+
     @ManyToOne
-    @JoinColumn(name="userId")
+    @JoinColumn(name = "userId")
+    @JsonBackReference // Add this for consistency
     private User user;
 
     public Long getFeedbackId() {

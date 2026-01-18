@@ -7,13 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.examly.springapp.model.Product;
 
-public interface ProductRepo extends JpaRepository<Product,Long> {
+public interface ProductRepo extends JpaRepository<Product, Long> {
 
     // @Query("select p from Product p where p.user.userId=:userId")
     // List<Product> getProductsByUserId(Long userId);
-
-    List<Product> findByUserUserId(Long userId);
-
 
     List<Product> findByCategory(String category);
 }

@@ -45,15 +45,6 @@ public class Product {
     private LocalDate createdAt;
     private LocalDate updatedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    @JsonBackReference
-    private User user;
-
-    @ManyToMany
-    @JoinTable(name = "product_orders", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
-    private List<Order> orders = new ArrayList<>();
-
     public Long getProductId() {
         return productId;
     }
@@ -142,22 +133,7 @@ public class Product {
         this.updatedAt = updatedAt;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Product() {
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 }

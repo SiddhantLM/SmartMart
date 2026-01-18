@@ -52,20 +52,21 @@ public class Order {
         CANCELLED
     }
 
-    @OneToOne
+    @ManyToOne // ← Changed from @OneToOne
     @JoinColumn(name = "addressId")
     private Address address;
 
     @ManyToOne
     @JoinColumn(name = "userId")
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<OrderItem> items = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "orders")
-    private List<Product> products = new ArrayList<>();
+    // @ManyToMany(mappedBy = "orders")
+    // private List<Product> products = new ArrayList<>();
 
     public Order() {
     }

@@ -45,53 +45,48 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProductsByUserId(Long userId) {
-       return productRepo.findByUserUserId(userId);
-    }
-
-    @Override
     public List<Product> getProductsByCategory(String category) {
         return productRepo.findByCategory(category);
     }
 
     @Override
     public boolean deleteProduct(Long id) {
-       Product p=productRepo.findById(id).orElse(null);
-       if(p!=null){
-        productRepo.deleteById(id);
-        return true;
-       }
-       return false;
+        Product p = productRepo.findById(id).orElse(null);
+        if (p != null) {
+            productRepo.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Product updateProduct(Long productId, ProductRequest productRequest) {
-       Product p=productRepo.findById(productId).orElse(null);
-       if(p!=null){
-        p.setName(productRequest.getName());
-        p.setDescription(productRequest.getDescription());
-        p.setPrice(productRequest.getPrice());
-        p.setStock(productRequest.getStock());
-        p.setCategory(productRequest.getCategory());
-        if(productRequest.getBase64Image()!=null && !productRequest.getBase64Image().isEmpty()){
-            p.setPhotoImage(productRequest.getBase64Image());
+        Product p = productRepo.findById(productId).orElse(null);
+        if (p != null) {
+            p.setName(productRequest.getName());
+            p.setDescription(productRequest.getDescription());
+            p.setPrice(productRequest.getPrice());
+            p.setStock(productRequest.getStock());
+            p.setCategory(productRequest.getCategory());
+            if (productRequest.getBase64Image() != null && !productRequest.getBase64Image().isEmpty()) {
+                p.setPhotoImage(productRequest.getBase64Image());
+            }
+            p.setUpdatedAt(LocalDate.now());
+            return productRepo.save(p);
         }
-        p.setUpdatedAt(LocalDate.now());
-        return productRepo.save(p);
-       }
-       return null;
+        return null;
     }
-   
+
     @Override
-    public Review addReview (Long productId, Long userId ,Review review) {
+    public Review addReview(Long productId, Long userId, Review review) {
         Product product = productRepo.findById(productId).orElse(null);
         User user = userRepo.findById(userId).orElse(null);
-        if(product!=null && user!=null) {
+        if (product != null && user != null) {
             review.setProduct(product);
             review.setUser(user);
             product.getReviews().add(review);
 
-            product.setRating((product.getRating()+review.getRating())/product.getReviews().size());
+            product.setRating((product.getRating() + review.getRating()) / product.getReviews().size());
 
             return reviewRepo.save(review);
         }
@@ -104,8 +99,8 @@ public class ProductServiceImpl implements ProductService {
         User user = userRepo.findById(userId).orElse(null);
         Product product = productRepo.findById(productId).orElse(null);
 
-        if(user!=null && product!=null) {
-            if(user.getWishlist().contains(product)) {
+        if (user != null && product != null) {
+            if (user.getWishlist().contains(product)) {
                 List<Product> newWishlist = user.getWishlist();
                 newWishlist.remove(newWishlist.indexOf(product));
                 user.setWishlist(newWishlist);
@@ -114,7 +109,7 @@ public class ProductServiceImpl implements ProductService {
                 newWishlist.add(product);
                 user.setWishlist(newWishlist);
             }
-            userRepo.save(user); //saved the chnges in user
+            userRepo.save(user); // saved the chnges in user
         }
 
         return null;
@@ -122,13 +117,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getUserWishlist(Long userId) {
-       User user= userRepo.findById(userId).orElse(null);
-       if(user!=null){
-        return user.getWishlist();
-       }
-       return new ArrayList<>();
+        User user = userRepo.findById(userId).orElse(null);
+        if (user != null) {
+            return user.getWishlist();
+        }
+        return new ArrayList<>();
     }
 
-    
-    
 }
