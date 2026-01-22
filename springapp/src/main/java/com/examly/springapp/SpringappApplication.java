@@ -2,11 +2,13 @@ package com.examly.springapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
 @SpringBootApplication
+@ConfigurationPropertiesScan("com.examly.springapp.properties")
 public class SpringappApplication {
 
 	public static void main(String[] args) {
