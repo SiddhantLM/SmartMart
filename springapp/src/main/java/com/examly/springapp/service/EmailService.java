@@ -1,38 +1,63 @@
 package com.examly.springapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import java.io.IOException;
+
 import org.springframework.stereotype.Service;
+
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.SendGrid;
+import com.sendgrid.helpers.mail.Mail;
+import com.sendgrid.helpers.mail.objects.Content;
+import com.sendgrid.helpers.mail.objects.Email;
 
 @Service
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    private static final String EMAIL_ENDPOINT = "mail/send";
 
-    public void sendOtpEmail(String toEmail, String otp) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(toEmail);
-        message.setSubject("Your OTP Code");
-        message.setText("Your OTP is: " + otp + "\nIt is valid for 10 minutes.");
-        mailSender.send(message);
+    private final SendGrid sendGrid;
+    private final Email fromEmail;
+
+    public EmailService(SendGrid sendGrid, Email fromEmail) {
+        this.sendGrid = sendGrid;
+        this.fromEmail = fromEmail;
     }
 
-    public void sendStockReminderEmail(String toEmail, String productName) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(toEmail);
-        message.setSubject("Stock Reminder");
-        message.setText("Hello,\n\nThe product '" + productName + "' is back in stock!\n\nRegards,\nSmart Mart");
-        mailSender.send(message);
+    private void send(String to, String subject, String body) throws IOException {
+        Email toEmail = new Email(to);
+        Content content = new Content("text/plain", body);
+        Mail mail = new Mail(fromEmail, subject, toEmail, content);
+
+        Request request = new Request();
+        request.setMethod(Method.POST);
+        request.setEndpoint(EMAIL_ENDPOINT);
+        request.setBody(mail.build());
+
+        sendGrid.api(request);
     }
 
-    public void sendContactInfo(String info) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo("sathyasailikhith@gmail.com");
-        message.setSubject("Contact");
-        message.setText(info);
-        mailSender.send(message);
+    // 🔐 OTP EMAIL (FIXED)
+    public void sendOtpEmail(String toEmail, String otp) throws IOException {
+        send(
+                toEmail,
+                "Your OTP Code",
+                "Your OTP is: " + otp + "\n\nValid for 10 minutes.");
     }
 
+    // 📦 STOCK REMINDER
+    public void sendStockReminderEmail(String toEmail, String productName) throws IOException {
+        send(
+                toEmail,
+                "Stock Reminder",
+                "The product '" + productName + "' is back in stock!");
+    }
+
+    // 📩 CONTACT EMAIL
+    public void sendContactInfo(String info) throws IOException {
+        send(
+                "sathyasailikhith@gmail.com",
+                "Contact Request",
+                info);
+    }
 }

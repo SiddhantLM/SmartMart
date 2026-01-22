@@ -25,8 +25,8 @@ public class StockReminderServiceImpl implements StockReminderService {
     @Override
     public StockReminder addReminder(Long productId, String email) {
         Product product = productRepo.findById(productId).orElse(null);
-        
-        if(product != null) {
+
+        if (product != null) {
             StockReminder sr = new StockReminder();
             sr.setEmail(email);
             sr.setProduct(product);
@@ -40,8 +40,12 @@ public class StockReminderServiceImpl implements StockReminderService {
     public boolean sendReminder(Long id) {
         StockReminder sr = stockReminderRepo.findById(id).orElse(null);
 
-        if(sr!=null) {
-            emailService.sendStockReminderEmail(sr.getEmail(), sr.getProduct().getName());
+        if (sr != null) {
+            try {
+                emailService.sendStockReminderEmail(sr.getEmail(), sr.getProduct().getName());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             stockReminderRepo.delete(sr);
             return true;
 
@@ -52,7 +56,7 @@ public class StockReminderServiceImpl implements StockReminderService {
 
     @Override
     public List<StockReminder> getReminder() {
-       return stockReminderRepo.findAll();
+        return stockReminderRepo.findAll();
     }
-    
+
 }

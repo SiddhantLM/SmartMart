@@ -139,7 +139,12 @@ public class UserServiceImpl implements UserService {
         }
 
         otpRepo.save(existingOtp);
-        emailService.sendOtpEmail(trimmedEmail, otpContent);
+        try {
+            emailService.sendOtpEmail(trimmedEmail, otpContent);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // For testing (remove in production)
         System.out.println("OTP for " + trimmedEmail + " : " + otpContent);
