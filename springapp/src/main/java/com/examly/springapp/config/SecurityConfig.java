@@ -20,6 +20,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.examly.springapp.properties.SendGridConfigurationProperties;
+import com.sendgrid.SendGrid;
+import com.sendgrid.helpers.mail.objects.Email;
+
 import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
@@ -88,5 +92,15 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", config);
 
         return source;
+    }
+
+    @Bean
+    public SendGrid sendGrid(SendGridConfigurationProperties props) {
+        return new SendGrid(props.getApiKey());
+    }
+
+    @Bean
+    public Email fromEmail(SendGridConfigurationProperties props) {
+        return new Email(props.getFromEmail(), props.getFromName());
     }
 }
