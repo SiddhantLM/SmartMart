@@ -25,7 +25,6 @@ public class ProductController {
     @Autowired
     private AiReviewSummaryServiceImpl aiService;
 
-   
     @PostMapping("/products")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addProduct(@RequestBody ProductRequest productRequest) {
@@ -43,13 +42,13 @@ public class ProductController {
             return new ResponseEntity<>(saved, HttpStatusCode.valueOf(201));
         } catch (org.springframework.dao.DataIntegrityViolationException ex) {
             // conflicts (e.g., unique constraints)
+            ex.printStackTrace();
             return new ResponseEntity<>("Conflict while creating product", HttpStatusCode.valueOf(409));
         } catch (Exception e) {
             // treat other add failures as conflict per spec
             return new ResponseEntity<>("Unable to create product", HttpStatusCode.valueOf(409));
         }
     }
-
 
     @PutMapping("/products/{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -68,7 +67,6 @@ public class ProductController {
         }
     }
 
-
     @GetMapping("/products/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public ResponseEntity<?> getProductById(@PathVariable Long id) {
@@ -83,7 +81,6 @@ public class ProductController {
             return new ResponseEntity<>("Access Denied or Error occurred", HttpStatusCode.valueOf(500));
         }
     }
-
 
     @DeleteMapping("/product/{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -100,7 +97,6 @@ public class ProductController {
         }
     }
 
-
     @GetMapping("/products/category/{category}")
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     public ResponseEntity<?> getProductsByCategory(@PathVariable String category) {
@@ -115,7 +111,6 @@ public class ProductController {
             return new ResponseEntity<>("Access Denied or Error occurred", HttpStatusCode.valueOf(500));
         }
     }
-
 
     @GetMapping("/products")
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
@@ -136,17 +131,19 @@ public class ProductController {
 
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/products/{productId}/user/{userId}")
-    public ResponseEntity<Review> addReview (@PathVariable Long productId, @PathVariable Long userId, @RequestBody Review review){
+    public ResponseEntity<Review> addReview(@PathVariable Long productId, @PathVariable Long userId,
+            @RequestBody Review review) {
         try {
-            return new ResponseEntity<>(productService.addReview(productId, userId, review), HttpStatusCode.valueOf(200));
+            return new ResponseEntity<>(productService.addReview(productId, userId, review),
+                    HttpStatusCode.valueOf(200));
         } catch (Exception e) {
-            return new ResponseEntity<>( HttpStatusCode.valueOf(500));
+            return new ResponseEntity<>(HttpStatusCode.valueOf(500));
         }
     }
 
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/products/{productId}/wishlist/user/{userId}")
-    public ResponseEntity<Boolean> toggleWishlist (@PathVariable Long productId, @PathVariable Long userId) {
+    public ResponseEntity<Boolean> toggleWishlist(@PathVariable Long productId, @PathVariable Long userId) {
         try {
             productService.toggleWishlist(productId, userId);
             return new ResponseEntity<>(true, HttpStatusCode.valueOf(200));
@@ -155,26 +152,25 @@ public class ProductController {
         }
     }
 
-
     @GetMapping("/user/{userId}/wishlist")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<List<Product>> getUserWishlist(@PathVariable Long userId){
-        try{
-            List<Product> wishlist=productService.getUserWishlist(userId);
-            return new ResponseEntity<>(wishlist,HttpStatusCode.valueOf(200));
-        }catch(Exception e){
+    public ResponseEntity<List<Product>> getUserWishlist(@PathVariable Long userId) {
+        try {
+            List<Product> wishlist = productService.getUserWishlist(userId);
+            return new ResponseEntity<>(wishlist, HttpStatusCode.valueOf(200));
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatusCode.valueOf(500));
         }
     }
 
-
     @PostMapping("/products/summary")
-    public ResponseEntity<Map<String,String>> summarizedReviews(@RequestBody List<Review> reviews){
+    public ResponseEntity<Map<String, String>> summarizedReviews(@RequestBody List<Review> reviews) {
         try {
-            String summary=aiService.generateSummary(reviews);
+            String summary = aiService.generateSummary(reviews);
             return ResponseEntity.ok(Map.of("summary", summary));
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(Map.of("summary", "Sorry, AI summarizer is temporarily unavailable."));
+            return ResponseEntity.status(500)
+                    .body(Map.of("summary", "Sorry, AI summarizer is temporarily unavailable."));
         }
     }
 }

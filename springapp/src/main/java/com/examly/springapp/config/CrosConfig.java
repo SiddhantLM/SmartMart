@@ -10,7 +10,7 @@ public class CrosConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://smart-mart-rouge.vercel.app", "http://localhost:8081")
+                .allowedOrigins("https://smart-mart-rouge.vercel.app", "http://localhost:8081", "http://localhost:4200")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);

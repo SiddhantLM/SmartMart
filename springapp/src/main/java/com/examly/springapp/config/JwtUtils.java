@@ -13,14 +13,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class JwtUtils {
-    private final String key;
+    // private final String key;
 
-    public JwtUtils(@Value("${jwt.secret}") String key) {
-        this.key = key;
-    }
+    // public JwtUtils(@Value("${jwt.secret}") String key) {
+    // this.key = key;
+    // }
 
-    // Dotenv dotenv = Dotenv.configure().load();
-    // String key = dotenv.get("JWT_SECRET");
+    Dotenv dotenv = Dotenv.configure().load();
+    String key = dotenv.get("JWT_SECRET");
 
     public String generateToken(String username) {
         return Jwts.builder()

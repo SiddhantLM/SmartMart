@@ -82,7 +82,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(
-                List.of("https://smart-mart-rouge.vercel.app", "http://localhost:8081"));
+                List.of("https://smart-mart-rouge.vercel.app", "http://localhost:8081", "http://localhost:4200"));
         config.setAllowedMethods(
                 List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
