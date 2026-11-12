@@ -6,7 +6,6 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -19,8 +18,14 @@ public class JwtUtils {
     // this.key = key;
     // }
 
-    Dotenv dotenv = Dotenv.configure().load();
-    String key = dotenv.get("JWT_SECRET");
+    private final String key;
+
+    public JwtUtils(@Value("${JWT_SECRET}") String key) {
+        if (key == null || key.isBlank()) {
+            throw new IllegalStateException("JWT_SECRET is not configured");
+        }
+        this.key = key;
+    }
 
     public String generateToken(String username) {
         return Jwts.builder()
